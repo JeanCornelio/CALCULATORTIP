@@ -30,53 +30,123 @@ inpcustom.addEventListener('keypress', onlynumber, false);
 inpperson.addEventListener('keypress', onlynumber, false);
 
 
+
+//each event validates the person field and calls the functions if the validation is met, only (buttons 5%--50%).
+btn5.addEventListener('click', () => {
+
+    if (inpbill.value == "" || inpbill.value == 0 || inpperson.value == "" || inpperson.value == 0) {
+        validperson();
+    } else {
+        validperson();
+        operation = parseInt(billupdate) * 0.05;
+        totamount.value = (operation / parseInt(personupdate));
+        totbill.value = (parseInt(billupdate) + operation) / parseInt(personupdate);
+        inpcustom.value = "5";
+    }
+});
+
+btn10.addEventListener('click', () => {
+
+    if (inpbill.value == "" || inpbill.value == 0 || inpperson.value == "" || inpperson.value == 0) {
+        validperson();
+    } else {
+        validperson();
+        operation = parseInt(billupdate) * 0.10;
+        totamount.value = (operation / parseInt(personupdate));
+        totbill.value = (parseInt(billupdate) + operation) / parseInt(personupdate);
+        inpcustom.value = 10;
+    }
+});
+
+btn15.addEventListener('click', () => {
+    if (inpbill.value == "" || inpbill.value == 0 || inpperson.value == "" || inpperson.value == 0) {
+        validperson();
+    } else {
+        validperson();
+        operation = parseInt(billupdate) * 0.15;
+        totamount.value = (operation / parseInt(personupdate));
+        totbill.value = (parseInt(billupdate) + operation) / parseInt(personupdate);
+        inpcustom.value = 15;
+    }
+});
+
+btn25.addEventListener('click', () => {
+    if (inpbill.value == "" || inpbill.value == 0 || inpperson.value == "" || inpperson.value == 0) {
+        validperson();
+    } else {
+        validperson();
+        operation = parseInt(billupdate) * 0.25;
+        totamount.value = (operation / parseInt(personupdate));
+        totbill.value = (parseInt(billupdate) + operation) / parseInt(personupdate);
+        inpcustom.value = 25;
+    }
+});
+
+btn50.addEventListener('click', () => {
+    if (inpbill.value == "" || inpbill.value == 0 || inpperson.value == "" || inpperson.value == 0) {
+        validperson();
+    } else {
+        validperson();
+        operation = parseInt(billupdate) * 0.50;
+        totamount.value = (operation / parseInt(personupdate));
+        totbill.value = (parseInt(billupdate) + operation) / parseInt(personupdate);
+        inpcustom.value = 50;
+    }
+});
+
+
+
 inpbill.addEventListener('input', () => {
     billupdate = parseInt(inpbill.value);
-    if (inpbill.value == "" || inpbill.value == 0 || inpperson.value == "" || inpperson.value == 0) {
+    if (inpbill.value == "" || inpbill.value == "0" || inpperson.value == "" || inpperson.value == "0" || inpcustom.value == "0" || inpcustom.value == "") {
         return false;
     } else {
+
         updateop()
     }
 });
 
 inpperson.addEventListener('input', () => {
     personupdate = parseInt(inpperson.value);
-    if (inpbill.value == "" || inpbill.value == 0 || inpperson.value == "" || inpperson.value == 0 || inpcustom.value == "") {
+    if (inpbill.value == "" || inpbill.value == "0" || inpperson.value == "" || inpperson.value == "0" || inpcustom.value == "" || inpcustom.value == "") {
 
     } else {
+
         updateop()
     }
 });
 
 
 inpcustom.addEventListener('input', () => {
-    customupdate = inpcustom.value;
+    customupdate = parseFloat(inpcustom.value);
     if (inpbill.value == "" || inpbill.value == "0" || inpperson.value == "" || inpperson.value == 0) {
         validperson();
         return false;
     } else {
 
 
-        if (customupdate < 10 && customupdate > 0) {
+        if (inpcustom.value < 10 && inpcustom.value > 0) {
             custom = "0.0" + customupdate;
-            let result = parseFloat(custom) * billupdate;
-            totamount.value = "$" + (result / personupdate);
-            totbill.value = "$" + (billupdate + result) / personupdate;
+            let result = parseFloat(custom) * parseInt(billupdate);
+            totamount.value = (result / parseInt(personupdate));
+            totbill.value = (parseInt(billupdate) + result) / parseInt(personupdate);
             console.log(totamount.value);
-
-        } else if (customupdate >= 10 && customupdate <= 99) {
+            console.log(totbill.value);
+        } else if (inpcustom.value >= 10 && inpcustom.value <= 99) {
             custom = "0." + customupdate;
-            let result = parseFloat(custom) * billupdate;
-            totamount.value = "$" + (result / personupdate);
-            totbill.value = "$" + (billupdate + result) / personupdate;
+            let result = parseFloat(custom) * parseInt(billupdate);
+            totamount.value = (result / parseInt(personupdate));
+            totbill.value = (parseInt(billupdate) + result) / parseInt(personupdate);
+            console.log(totamount.value);
+            console.log(totbill.value);
 
-
-        } else if (customupdate >= 100) {
+        } else if (inpcustom.value >= 100) {
             custom = customupdate;
-            let result = 1 * billupdate * custom;
-            totamount.value = "$" + (result / personupdate);
-            totbill.value = "$" + (billupdate + result) / personupdate;
-
+            let result = 1 * parseInt(billupdate) * parseInt(custom);
+            totamount.value = (result / parseInt(personupdate));
+            totbill.value = (parseInt(billupdate) + result) / parseInt(personupdate);
+            console.log(totamount.value);
+            console.log(totbill.value);
         }
 
     }
@@ -92,14 +162,30 @@ btnreset.addEventListener('click', () => {
 //Functions
 
 let updateop = () => {
+    if (inpcustom.value < 10 && inpcustom.value > 0) {
+        custom = "0.0" + customupdate;
+        let result = parseFloat(custom) * parseInt(billupdate);
+        totamount.value = (result / parseInt(personupdate));
+        totbill.value = (parseInt(billupdate) + result) / parseInt(personupdate);
+        console.log(totamount.value);
+        console.log(totbill.value);
+    } else if (inpcustom.value >= 10 && inpcustom.value <= 99) {
+        custom = "0." + customupdate;
+        let result = parseFloat(custom) * parseInt(billupdate);
+        totamount.value = (result / parseInt(personupdate));
+        totbill.value = (parseInt(billupdate) + result) / parseInt(personupdate);
+        console.log(totamount.value);
+        console.log(totbill.value);
 
-    let result = parseFloat(custom) * billupdate;
-    totamount.value = "$" + (result / personupdate);
-    totbill.value = "$" + (billupdate + result) / personupdate;
-    console.log(totamount.value);
-    console.log(totbill.value);
-    console.log(result);
-    console.log(custom);
+    } else if (inpcustom.value >= 100) {
+        custom = customupdate;
+        let result = 1 * parseInt(billupdate) * parseInt(custom);
+        totamount.value = (result / parseInt(personupdate));
+        totbill.value = (parseInt(billupdate) + result) / parseInt(personupdate);
+        console.log(totamount.value);
+        console.log(totbill.value);
+    }
+
 }
 
 //this function only allow numbers.
@@ -134,66 +220,3 @@ let validperson = () => {
 
     }
 };
-
-//each event validates the person field and calls the functions if the validation is met, only (buttons 5%--50%).
-btn5.addEventListener('click', () => {
-
-    if (inpbill.value == "" || inpbill.value == 0 || inpperson.value == "" || inpperson.value == 0) {
-        validperson();
-    } else {
-        validperson();
-        operation = parseInt(billupdate) * 0.05;
-        totamount.value = "$" + (operation / personupdate);
-        totbill.value = "$" + (billupdate + operation) / personupdate;
-        inpcustom.value = "5";
-    }
-});
-
-btn10.addEventListener('click', () => {
-
-    if (inpbill.value == "" || inpbill.value == 0 || inpperson.value == "" || inpperson.value == 0) {
-        validperson();
-    } else {
-        validperson();
-        operation = parseInt(billupdate) * 0.10;
-        totamount.value = "$" + (operation / personupdate);
-        totbill.value = "$" + (billupdate + operation) / personupdate;
-        inpcustom.value = 10;
-    }
-});
-
-btn15.addEventListener('click', () => {
-    if (inpbill.value == "" || inpbill.value == 0 || inpperson.value == "" || inpperson.value == 0) {
-        validperson();
-    } else {
-        validperson();
-        operation = parseInt(billupdate) * 0.15;
-        totamount.value = "$" + (operation / personupdate);
-        totbill.value = "$" + (billupdate + operation) / personupdate;
-        inpcustom.value = 15;
-    }
-});
-
-btn25.addEventListener('click', () => {
-    if (inpbill.value == "" || inpbill.value == 0 || inpperson.value == "" || inpperson.value == 0) {
-        validperson();
-    } else {
-        validperson();
-        operation = parseInt(billupdate) * 0.25;
-        totamount.value = "$" + (operation / personupdate);
-        totbill.value = "$" + (billupdate + operation) / personupdate;
-        inpcustom.value = 25;
-    }
-});
-
-btn50.addEventListener('click', () => {
-    if (inpbill.value == "" || inpbill.value == 0 || inpperson.value == "" || inpperson.value == 0) {
-        validperson();
-    } else {
-        validperson();
-        operation = parseInt(billupdate) * 0.50;
-        totamount.value = "$" + (operation / personupdate);
-        totbill.value = "$" + (billupdate + operation) / personupdate;
-        inpcustom.value = 50;
-    }
-});
