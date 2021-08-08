@@ -207,6 +207,18 @@ body {
     font-weight: bolder;
 }
 
+.btn-percent:focus {
+    background: rgb(123, 219, 205);
+    color: hsl(183, 100%, 15%);
+    font-weight: bolder;
+}
+
+.btn-percent:visited {
+    background: rgb(123, 219, 205);
+    color: hsl(183, 100%, 15%);
+    font-weight: bolder;
+}
+
 .btn-reset {
     width: 90%;
     margin-left: 15px;

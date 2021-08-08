@@ -1,11 +1,9 @@
 'use strict'
-let result;
+let billupdate;
+let customupdate;
+let personupdate;
 let operation;
-let persontip;
-let total;
 let custom;
-let validperson;
-
 //elements buttons
 let btn5 = document.getElementById("btn-5");
 let btn10 = document.getElementById("btn-10");
@@ -26,140 +24,82 @@ let inperror = document.getElementById("text-error");
 
 //events
 
-//each event validates the person field and calls the functions if the validation is met, only (buttons 5%--50%).
-btn5.addEventListener('click', () => {
-
-    operation = parseInt(inpbill.value) * 0.05;
-    validperson(operation);
-    if (inpperson.value == 0 || inpperson.value == "" || inpbill.value == "" || inpbill.value == "0") {
-        return false;
-    } else {
-        persontip(operation);
-        total(operation);
-    }
-});
-
-btn10.addEventListener('click', () => {
-
-    operation = parseInt(inpbill.value) * 0.10;
-    validperson(operation);
-    if (inpperson.value == 0 || inpperson.value == "" || inpbill.value == "" || inpbill.value == "0") {
-        return false;
-    } else {
-        persontip(operation);
-        total(operation);
-    }
-});
-
-btn15.addEventListener('click', () => {
-
-    operation = parseInt(inpbill.value) * 0.15;
-    validperson(operation);
-    if (inpperson.value == 0 || inpperson.value == "" || inpbill.value == "" || inpbill.value == "0") {
-        return false;
-    } else {
-        persontip(operation);
-        total(operation);
-    }
-});
-
-btn25.addEventListener('click', () => {
-
-    operation = parseInt(inpbill.value) * 0.25;
-    validperson(operation);
-    if (inpperson.value == 0 || inpperson.value == "" || inpbill.value == "" || inpbill.value == "0") {
-        return false;
-    } else {
-        persontip(operation);
-        total(operation);
-    }
-});
-
-btn50.addEventListener('click', () => {
-
-    operation = parseInt(inpbill.value) * 0.50;
-    validperson(operation);
-    if (inpperson.value == 0 || inpperson.value == "" || inpbill.value == "" || inpbill.value == "0") {
-        return false;
-    } else {
-        persontip(operation);
-        total(operation);
-    }
-
-});
-
-//this event resets all fields to default.
-btnreset.addEventListener('click', () => {
-    inpbill.value = "";
-    inpcustom.value = "";
-    inpperson.value = "";
-    totamount.value = "";
-    totbill.value = "";
-    inperror.style.display = 'none';
-    inpperson.style.borderColor = '#d6d1d1';
-});
-
-
-//this event is valid and sends the variable with the result to the custom.
-inpcustom.addEventListener('input', () => {
-    validperson();
-    if (inpperson.value == 0 || inpperson.value == "" || inpbill.value == "" || inpbill.value == "0") {
-        return false;
-    } else {
-        result();
-    }
-});
-
-
+//this event calls the function only allows numbers
 inpbill.addEventListener('keypress', onlynumber, false);
 inpcustom.addEventListener('keypress', onlynumber, false);
 inpperson.addEventListener('keypress', onlynumber, false);
 
 
+inpbill.addEventListener('input', () => {
+    billupdate = parseInt(inpbill.value);
+    if (inpbill.value == "" || inpbill.value == 0 || inpperson.value == "" || inpperson.value == 0) {
+        return false;
+    } else {
+        updateop()
+    }
+});
+
+inpperson.addEventListener('input', () => {
+    personupdate = parseInt(inpperson.value);
+    if (inpbill.value == "" || inpbill.value == 0 || inpperson.value == "" || inpperson.value == 0 || inpcustom.value == "") {
+
+    } else {
+        updateop()
+    }
+});
+
+
+inpcustom.addEventListener('input', () => {
+    customupdate = inpcustom.value;
+    if (inpbill.value == "" || inpbill.value == "0" || inpperson.value == "" || inpperson.value == 0) {
+        validperson();
+        return false;
+    } else {
+
+
+        if (customupdate < 10 && customupdate > 0) {
+            custom = "0.0" + customupdate;
+            let result = parseFloat(custom) * billupdate;
+            totamount.value = "$" + (result / personupdate);
+            totbill.value = "$" + (billupdate + result) / personupdate;
+            console.log(totamount.value);
+
+        } else if (customupdate >= 10 && customupdate <= 99) {
+            custom = "0." + customupdate;
+            let result = parseFloat(custom) * billupdate;
+            totamount.value = "$" + (result / personupdate);
+            totbill.value = "$" + (billupdate + result) / personupdate;
+
+
+        } else if (customupdate >= 100) {
+            custom = customupdate;
+            let result = 1 * billupdate * custom;
+            totamount.value = "$" + (result / personupdate);
+            totbill.value = "$" + (billupdate + result) / personupdate;
+
+        }
+
+    }
+});
+
+//this event resets all fields to default.
+btnreset.addEventListener('click', () => {
+    reset();
+});
+
+
 
 //Functions
 
-//this function validates the person field.
-validperson = (operation) => {
+let updateop = () => {
 
-    if (inpbill.value == "" || inpbill.value == "0") {
-        return false;
-    } else if (inpperson.value == 0 || inpperson.value == "") {
-        inperror.style.display = 'block';
-        inpperson.style.borderColor = '#FF4C29';
-
-    } else {
-        inperror.style.display = 'none';
-        inpperson.style.borderColor = '#d6d1d1';
-
-    }
-}
-
-//this function shows the tip.
-persontip = (result) => {
-    totamount.value = "$" + result / parseInt(inpperson.value);
-};
-
-//this function shows the total with the tip included.
-total = (result) => {
-    totbill.value = "$" + (parseInt(inpbill.value) + result) / parseInt(inpperson.value);
-}
-
-//shows the total tip and the total amount per person.
-result = () => {
-    if (inpcustom.value < 10 && inpcustom.value > 0) {
-        custom = "0.0" + inpcustom.value;
-        let result = parseFloat(custom) * parseInt(inpbill.value);
-        totamount.value = "$" + (result / inpperson.value);
-        totbill.value = "$" + (parseInt(inpbill.value) + result) / parseInt(inpperson.value);
-
-
-    } else if (inpcustom.value >= 10 && inpcustom.value <= 99) {
-        custom = "0." + inpcustom.value;
-        let result = parseFloat(custom) * parseInt(inpbill.value);
-        totamount.value = "$" + (result / inpperson.value);
-        totbill.value = "$" + (parseInt(inpbill.value) + result) / parseInt(inpperson.value);
-    }
+    let result = parseFloat(custom) * billupdate;
+    totamount.value = "$" + (result / personupdate);
+    totbill.value = "$" + (billupdate + result) / personupdate;
+    console.log(totamount.value);
+    console.log(totbill.value);
+    console.log(result);
+    console.log(custom);
 }
 
 //this function only allow numbers.
@@ -169,3 +109,91 @@ function onlynumber(e) {
         e.preventDefault();
     }
 }
+
+//this event resets all fields to default.
+let reset = () => {
+        inpbill.value = "";
+        inpcustom.value = "";
+        inpperson.value = "";
+        totamount.value = "";
+        totbill.value = "";
+        inperror.style.display = 'none';
+        inpperson.style.borderColor = '#d6d1d1';
+
+    }
+    //this function validates the person field.
+let validperson = () => {
+
+    if (inpperson.value == "0" || inpperson.value == "") {
+        inperror.style.display = 'block';
+        inpperson.style.borderColor = '#FF4C29';
+
+    } else {
+        inperror.style.display = 'none';
+        inpperson.style.borderColor = '#d6d1d1';
+
+    }
+};
+
+//each event validates the person field and calls the functions if the validation is met, only (buttons 5%--50%).
+btn5.addEventListener('click', () => {
+
+    if (inpbill.value == "" || inpbill.value == 0 || inpperson.value == "" || inpperson.value == 0) {
+        validperson();
+    } else {
+        validperson();
+        operation = parseInt(billupdate) * 0.05;
+        totamount.value = "$" + (operation / personupdate);
+        totbill.value = "$" + (billupdate + operation) / personupdate;
+        inpcustom.value = "5";
+    }
+});
+
+btn10.addEventListener('click', () => {
+
+    if (inpbill.value == "" || inpbill.value == 0 || inpperson.value == "" || inpperson.value == 0) {
+        validperson();
+    } else {
+        validperson();
+        operation = parseInt(billupdate) * 0.10;
+        totamount.value = "$" + (operation / personupdate);
+        totbill.value = "$" + (billupdate + operation) / personupdate;
+        inpcustom.value = 10;
+    }
+});
+
+btn15.addEventListener('click', () => {
+    if (inpbill.value == "" || inpbill.value == 0 || inpperson.value == "" || inpperson.value == 0) {
+        validperson();
+    } else {
+        validperson();
+        operation = parseInt(billupdate) * 0.15;
+        totamount.value = "$" + (operation / personupdate);
+        totbill.value = "$" + (billupdate + operation) / personupdate;
+        inpcustom.value = 15;
+    }
+});
+
+btn25.addEventListener('click', () => {
+    if (inpbill.value == "" || inpbill.value == 0 || inpperson.value == "" || inpperson.value == 0) {
+        validperson();
+    } else {
+        validperson();
+        operation = parseInt(billupdate) * 0.25;
+        totamount.value = "$" + (operation / personupdate);
+        totbill.value = "$" + (billupdate + operation) / personupdate;
+        inpcustom.value = 25;
+    }
+});
+
+btn50.addEventListener('click', () => {
+    if (inpbill.value == "" || inpbill.value == 0 || inpperson.value == "" || inpperson.value == 0) {
+        validperson();
+    } else {
+        validperson();
+        operation = parseInt(billupdate) * 0.50;
+        totamount.value = "$" + (operation / personupdate);
+        totbill.value = "$" + (billupdate + operation) / personupdate;
+        inpcustom.value = 50;
+    }
+});
