@@ -1,147 +1,147 @@
-body {
+body{
     background-color: hsl(171, 46%, 85%);
     font-family: 'Space Mono', sans-serif;
     Font-size: 24px;
+    
 }
 
-
 /*------CSS SVG-----*/
-
-.icon-logo {
+.icon-logo{
     display: flex;
     justify-content: center;
     margin-top: 8%;
     margin-bottom: 5%;
-}
+ 
+ }
 
-.dollar .input-information {
-    background: url(/images/icon-dollar.svg)5px no-repeat;
+ .dollar .input-information{
+    background: 
+    url(/images/icon-dollar.svg)5px no-repeat;
     background-size: 10px;
     background-position: 10px;
-}
-
-.person .input-information {
-    background: url(/images/icon-person.svg) 5px no-repeat;
+    
+ }
+ 
+ .person .input-information{
+    background: 
+    url(/images/icon-person.svg) 5px no-repeat;
     background-size: 10px;
     background-position: 10px;
-}
-
-
+    
+ }
 /*-----------*/
 
 
-/*------CSS Containers-----*/
 
-.container-parent {
+/*------CSS Containers-----*/
+ .container-parent{
     background: hsl(0, 0%, 100%);
-    margin: 0 auto;
+    margin:0 auto;
     width: 40%;
     padding: 20px;
     border-radius: 20px;
-}
 
-.flex {
+ }
+ 
+ .flex{
     display: flex;
-    justify-content: space-around;
+    justify-content:space-around;
     flex-wrap: wrap;
-}
+ }
 
-.container-information {
+ .container-information{
     padding: 20px;
-    width: 350px;
-    margin: 5px 20px 5px -5px;
+    width:350px;
+    margin:5px 20px 5px -5px ;
 }
 
-.container-result {
+.container-result{
     background: hsl(183, 100%, 15%);
+    
     border-radius: 20px;
-    margin: 0 auto;
-    width: 340px;
-}
-
-.container-buttons {
+    width:350px;
+ }
+ 
+ .container-buttons{
     margin-left: -10px;
     margin-right: -20px;
     margin-top: -20px;
+    
+ }
+
+
+.container-buttons .colum-buttons{
+  display: flex;
+  justify-content: space-around;
 }
 
-.container-buttons .colum-buttons {
-    display: flex;
-    justify-content: space-around;
-}
-
-.container-text-inline {
+.container-text-inline{
     display: flex;
     justify-content: space-between;
 }
-
-.container-result .colum-result {
+.container-result .colum-result{
     display: flex;
     justify-content: space-around;
     margin-bottom: 50px;
-}
-
+  }
 
 /*-----------*/
 
 
 /*------CSS Text information-----*/
-
-.text-information {
+ .text-information{
     font-size: 15px;
     color: rgb(110, 108, 108);
     word-spacing: 3px;
     margin-top: -15px;
 }
 
-.text-error {
+.text-error{
     color: #FF4C29;
     font-size: 15px;
     word-spacing: 3px;
     display: none;
     margin-top: -15px;
-}
+ }
 
 
 /*-----------*/
-
 
 /*------CSS Text result-----*/
-
-.text1-result {
-    color: hsl(160, 10%, 88%);
+.text1-result{
+    color:hsl(160, 10%, 88%);
     font-size: 15px;
-    margin-top: 30px;
+    margin-top: 20px;
 }
-
-.text2-result {
+.text2-result{
     margin-top: -15px;
-    color: hsla(160, 10%, 88%, 0.507);
+    color:hsla(160, 10%, 88%, 0.507);
     font-size: 13px;
-    margin-top: 10px;
+    margin-top: 20px;
 }
-
 
 /*-----------*/
+
 
 
 /*------CSS inputs-----*/
-
-.input-information {
+.input-information{
     padding: 8px;
     border-radius: 3px;
     border: solid 1px rgb(214, 209, 209);
     font-size: 20px;
     text-align: right;
-    font-weight: bolder;
+    font-weight:bolder;
     color: #055052;
     outline-color: #53B8BB;
     width: 98%;
-    margin-top: -10px;
-    font-family: 'Space Mono';
-}
+    margin-top: -10px; 
+    font-family: 'Space Mono';   
+ }
 
-#input-custom {
+ 
+
+ #input-custom{
     padding: 8px;
     border-radius: 3px;
     border: 2px solid #cac8c8;
@@ -154,38 +154,40 @@ body {
     font-size: 20px;
     font-family: 'Space Mono';
     font-weight: 700;
-}
+ }
 
-#input-custom::placeholder {
-    color: #055052d0;
+#input-custom::placeholder{
+    color:#055052d0;
     text-align: center;
     font-family: 'Space Mono';
+    
 }
 
-.input-result {
+.input-result{
+    
     border: none;
     background: hsl(183, 100%, 15%);
-    color: rgb(123, 219, 205);
-    font-size: 38px;
+    color:hsl(183, 88%, 33%);
+    font-size: 40px;
     width: 40%;
     text-align: right;
     margin-top: 20px;
     font-family: 'Space Mono';
     font-weight: 700;
-}
 
-.input-result::placeholder {
-    color: rgb(123, 219, 205);
+}
+.input-result::placeholder{
+    color:hsl(183, 88%, 33%);
     text-align: right;
+    
 }
-
-
 /*----------------------------*/
-
 
 /*------CSS Buttons-----*/
 
-.btn-percent {
+
+.btn-percent{
+    
     border: none;
     padding: 10px;
     background: hsl(183, 100%, 15%);
@@ -195,74 +197,67 @@ body {
     color: white;
     font-size: 25px;
     border-radius: 5px;
-    box-shadow: 5px 5px hsla(160, 2%, 69%, 0.87);
+    box-shadow:5px 5px hsla(160, 2%, 69%, 0.87);
     font-family: 'Space Mono';
     font-weight: 400;
     cursor: pointer;
 }
 
-.btn-percent:hover {
+.btn-percent:hover{
+
     background: rgb(123, 219, 205);
     color: hsl(183, 100%, 15%);
-    font-weight: bolder;
+    font-weight:bolder;
+    
 }
 
-.btn-percent:focus {
-    background: rgb(123, 219, 205);
-    color: hsl(183, 100%, 15%);
-    font-weight: bolder;
-}
-
-.btn-percent:visited {
-    background: rgb(123, 219, 205);
-    color: hsl(183, 100%, 15%);
-    font-weight: bolder;
-}
-
-.btn-reset {
+.btn-reset{
+    
     width: 90%;
     margin-left: 15px;
     margin-top: 20px;
     margin-bottom: 20px;
-    padding: 13px;
+    padding: 15px;
     border: none;
-    background: hsl(183, 79%, 26%);
+    background:hsl(183, 79%, 26%);
     font-size: 20px;
-    color: hsl(183, 89%, 15%);
-    box-shadow: 5px 5px hsl(183, 88%, 13%);
+    color:hsl(183, 89%, 15%);
+    box-shadow:5px 5px hsl(183, 88%, 13%) ;
     font-family: 'Space Mono';
     font-weight: 700;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.btn-reset:hover {
+.btn-reset:hover{
     background: rgb(123, 219, 205);
     color: hsl(183, 100%, 15%);
+    
 }
-
-
 /*-----------*/
-
-.attribution {
+ .attribution {
     margin-top: 130px;
-    font-size: 11px;
-    text-align: center;
-}
+    font-size: 11px; text-align: center; 
 
-.attribution a {
-    color: hsl(228, 45%, 44%);
 }
+.attribution a{
+    color: hsl(228, 45%, 44%); 
 
+}
 
 /*-----Media Query-----*/
+@media (max-width: 800px){
 
-@media (max-width: 800px) {
-    .container-parent {
-        margin-left: -7px;
-        width: 93%;
+    .container-parent{
+    margin-left:0px ;
+    width: 93%;
     }
-    .btn-reset {
-        margin-bottom: 20px;
+
+    .btn-reset{
+    margin-bottom: 20px;    
     }
+
 }
+
+
+
